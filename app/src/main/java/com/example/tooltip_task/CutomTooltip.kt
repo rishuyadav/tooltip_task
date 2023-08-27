@@ -37,8 +37,9 @@ class CustomTooltip(private val context: Context) {
     }
 
     fun setTooltipWidth(width: Int) {
-
-
+        val textLayoutParams = tooltipText.layoutParams
+        textLayoutParams.width = width
+        tooltipText.layoutParams = textLayoutParams
     }
 
 

@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
         animationView.playAnimation()
 
         // Wait for a few seconds before transitioning to the next activity
-        val splashTimeout = 3000L // 3 seconds
+        val splashTimeout = 2000L // 2 seconds
         animationView.postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
