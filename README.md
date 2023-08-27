@@ -48,8 +48,10 @@ This Android application allows users to create and display custom tooltips with
 </div>
 
 
-https://github.com/rishuyadav/tooltip_task/assets/72988817/8f1aa1fa-658f-4b3b-b1d3-48fcadcd8720
 
+
+
+https://github.com/rishuyadav/tooltip_task/assets/72988817/7bd57187-4270-47ef-8f35-7d17124978bd
 
 
 
