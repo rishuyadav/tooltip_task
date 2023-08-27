@@ -32,6 +32,7 @@ class PreviewActivity : AppCompatActivity() {
             findViewById<Button>(R.id.button5)
         )
 
+
         // Retrieve and display tooltips for each button
         lifecycleScope.launch {
             try {
@@ -40,6 +41,7 @@ class PreviewActivity : AppCompatActivity() {
 
                 tooltipConfigurations.forEach { configuration ->
                     val button = buttons.getOrNull(configuration.buttonIndex)
+
                     if (button == null) {
                         Timber.e("Button not found for index ${configuration.buttonIndex}")
                         return@forEach
@@ -63,6 +65,12 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun createCustomTooltip(configuration: TooltipConfiguration): CustomTooltip {
+        val images = arrayOf(
+            "https://images.pexels.com/photos/59523/pexels-photo-59523.jpeg",
+            "https://c8.alamy.com/comp/2AYNK6G/hand-click-button-mouse-cursor-web-pointer-press-or-touch-website-element-vector-computer-navigation-thin-line-icon-isolater-on-white-background-2AYNK6G.jpg",
+            "https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=",
+            "https://i.pinimg.com/originals/08/37/61/083761af1a3f6b02aaa022f7c0143373.jpg"
+        )
         val customTooltip = CustomTooltip(this@PreviewActivity)
         customTooltip.setTooltipText(configuration.tooltipText)
         customTooltip.tooltipText.textSize = configuration.textSize
@@ -70,6 +78,7 @@ class PreviewActivity : AppCompatActivity() {
         customTooltip.tooltipView.setBackgroundColor(configuration.backgroundColor)
         customTooltip.setTooltipPadding(configuration.tooltipPadding)
         customTooltip.setTooltipWidth(configuration.tooltipWidth)
+        customTooltip.setTooltipImage(images.getOrNull(configuration.imageIndex))
         return customTooltip
     }
 

@@ -12,7 +12,7 @@
         android:id="@+id/buttonRenderTooltip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/render_tooltip"
         android:backgroundTint="#0958D9"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -142,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="20dp"
         app:cornerRadius="4dp"
         android:text="@string/pick_ntext_color"
         android:backgroundTint="#0958D9"
@@ -150,7 +150,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonBackgroundColorPicker"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutTextSize" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerSelectImage" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonBackgroundColorPicker"
@@ -188,6 +188,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutTextSize" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/spinnerimagetextview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/select_image"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/spinnerSelectButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+
+        android:background="@drawable/spinner_bg"
+        android:id="@+id/spinnerSelectImage"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerimagetextview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

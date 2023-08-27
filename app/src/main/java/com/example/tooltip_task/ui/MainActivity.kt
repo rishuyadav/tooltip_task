@@ -53,6 +53,11 @@ class MainActivity : AppCompatActivity() {
         val positionAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, positions)
         positionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerTooltipPosition.adapter = positionAdapter
+
+        val images = arrayOf("Dog","Arrow","Apple","Dot")
+        val imageAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, images)
+        imageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerSelectImage.adapter = imageAdapter
     }
 
     private fun setupListeners() {
@@ -73,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         Timber.d("Rendering tooltip")
 
         val selectedButtonIndex = binding.spinnerSelectButton.selectedItemPosition
+        val imgIndex = binding.spinnerSelectImage.selectedItemPosition
         val tooltipText = binding.editTextTooltipText.text.toString()
         val tooltipPadding = binding.editTextTooltipPadding.text.toString().toIntOrNull() ?: 5
 
@@ -98,7 +104,8 @@ class MainActivity : AppCompatActivity() {
             textSize = textSize,
             textColor = selectedTextColor,
             backgroundColor = selectedBackgroundColor,
-            tooltipPadding = tooltipPadding
+            tooltipPadding = tooltipPadding,
+            imageIndex = imgIndex
         )
 
         lifecycleScope.launch {

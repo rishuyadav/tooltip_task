@@ -3,7 +3,7 @@ package com.example.tooltip_task
 import android.app.Application
 import timber.log.Timber
 
-class MyApplication : Application() {
+class TooltipApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
