@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.TextView
+import timber.log.Timber
 
 class CustomTooltip(private val context: Context) {
 
     val tooltipView: View = LayoutInflater.from(context).inflate(R.layout.layout_tooltip, null)
     val tooltipText: TextView = tooltipView.findViewById(R.id.customTooltipText)
-
     val popupWindow: PopupWindow = PopupWindow(tooltipView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
     enum class TooltipPosition {
@@ -20,6 +20,10 @@ class CustomTooltip(private val context: Context) {
         RIGHT,
         BOTTOM,
         LEFT,
+    }
+
+    init {
+        Timber.tag("CustomTooltip")
     }
 
     fun setTargetView(targetView: View) {
@@ -31,20 +35,31 @@ class CustomTooltip(private val context: Context) {
 
     fun setTooltipText(text: String) {
         tooltipText.text = text
+        Timber.d("Tooltip text set: $text")
     }
+
     fun setTooltipPadding(padding: Int) {
-        tooltipView.setPadding(padding,padding,padding,padding)
+        tooltipView.setPadding(padding, padding, padding, padding)
+        Timber.d("Tooltip padding set: $padding")
     }
 
     fun setTooltipWidth(width: Int) {
         val textLayoutParams = tooltipText.layoutParams
         textLayoutParams.width = width
         tooltipText.layoutParams = textLayoutParams
+        Timber.d("Tooltip width set: $width")
     }
 
-
-
     fun showTooltip(targetView: View, position: TooltipPosition) {
+        val (xOffset, yOffset) = calculateOffsets(targetView, position)
+
+        popupWindow.update(xOffset, yOffset, -1, -1)
+        popupWindow.showAtLocation(targetView, Gravity.NO_GRAVITY, xOffset, yOffset)
+
+        Timber.d("Tooltip shown at position: $position")
+    }
+
+    private fun calculateOffsets(targetView: View, position: TooltipPosition): Pair<Int, Int> {
         val location = IntArray(2)
         targetView.getLocationOnScreen(location)
 
@@ -57,7 +72,7 @@ class CustomTooltip(private val context: Context) {
         when (position) {
             TooltipPosition.TOP -> {
                 xOffset = location[0] + targetView.width / 2 - tooltipWidth / 2
-                yOffset = location[1] - targetView.height/2
+                yOffset = location[1] - targetView.height / 2
             }
             TooltipPosition.RIGHT -> {
                 xOffset = location[0] + targetView.width
@@ -68,21 +83,16 @@ class CustomTooltip(private val context: Context) {
                 yOffset = location[1] + targetView.height
             }
             TooltipPosition.LEFT -> {
-                xOffset = location[0] - targetView.width/2
-                yOffset = location[1]  - tooltipHeight / 2
+                xOffset = location[0] - targetView.width / 2
+                yOffset = location[1] - tooltipHeight / 2
             }
         }
 
-
-
-
-        popupWindow.update(xOffset, yOffset, -1, -1) // Update the position
-        popupWindow.showAtLocation(targetView, Gravity.NO_GRAVITY, xOffset, yOffset)
+        return xOffset to yOffset
     }
 
     fun dismissTooltip() {
-            popupWindow.dismiss()
-
+        popupWindow.dismiss()
+        Timber.d("Tooltip dismissed")
     }
-
 }
