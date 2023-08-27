@@ -12,5 +12,6 @@ data class TooltipConfiguration(
     val tooltipWidth: Int,
     val textSize: Float,
     val textColor: Int,
-    val backgroundColor: Int
+    val backgroundColor: Int,
+    val tooltipPadding: Int
 )

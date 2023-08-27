@@ -1,7 +1,6 @@
 package com.example.tooltip_task
 
 import android.content.Context
-import android.graphics.Color
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +32,15 @@ class CustomTooltip(private val context: Context) {
     fun setTooltipText(text: String) {
         tooltipText.text = text
     }
+    fun setTooltipPadding(padding: Int) {
+        tooltipView.setPadding(padding,padding,padding,padding)
+    }
+
+    fun setTooltipWidth(width: Int) {
+
+
+    }
+
 
 
     fun showTooltip(targetView: View, position: TooltipPosition) {
@@ -63,6 +71,8 @@ class CustomTooltip(private val context: Context) {
                 yOffset = location[1]  - tooltipHeight / 2
             }
         }
+
+
 
 
         popupWindow.update(xOffset, yOffset, -1, -1) // Update the position

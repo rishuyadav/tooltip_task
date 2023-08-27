@@ -2,6 +2,7 @@ package com.example.tooltip_task
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -54,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         binding.buttonRenderTooltip.setOnClickListener {
             val selectedButtonIndex = binding.spinnerSelectButton.selectedItemPosition
             val tooltipText = binding.editTextTooltipText.text.toString()
+            val tooltipPadding = binding.editTextTooltipPadding.text.toString().toIntOrNull() ?: 5
+
             val position = when (binding.spinnerTooltipPosition.selectedItemPosition) {
                 0 -> CustomTooltip.TooltipPosition.TOP
                 1 -> CustomTooltip.TooltipPosition.RIGHT
@@ -77,7 +80,9 @@ class MainActivity : AppCompatActivity() {
                 tooltipWidth = tooltipWidth,
                 textSize = textSize,
                 textColor = selectedTextColor,
-                backgroundColor = selectedBackgroundColor
+                backgroundColor = selectedBackgroundColor,
+                tooltipPadding =tooltipPadding
+
             )
 
             lifecycleScope.launch {

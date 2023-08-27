@@ -38,6 +38,8 @@ class PreviewActivity : AppCompatActivity() {
                 customTooltip.tooltipText.textSize = configuration.textSize
                 customTooltip.tooltipText.setTextColor(configuration.textColor)
                 customTooltip.tooltipView.setBackgroundColor(configuration.backgroundColor)
+                customTooltip.setTooltipPadding(configuration.tooltipPadding)
+                customTooltip.setTooltipWidth(configuration.tooltipWidth)
 
                 val position = when (configuration.tooltipPosition) {
                     "TOP" -> CustomTooltip.TooltipPosition.TOP
