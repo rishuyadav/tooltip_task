@@ -8,7 +8,7 @@
     <string name="_8">8</string>
     <string name="pick_ntext_color">Pick \nText Color</string>
     <string name="background_ncolor">Background \nColor</string>
-    <string name="pick_button_number">Pick Button Number</string>
+    <string name="pick_button_number">Target Element</string>
     <string name="button_1">Button 1</string>
     <string name="button_2">Button 2</string>
     <string name="button_3">Button 3</string>
