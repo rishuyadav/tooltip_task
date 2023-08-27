@@ -8,7 +8,7 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonRenderTooltip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,67 +18,149 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/editTextTooltipText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutTooltipText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Tooltip Text"
         app:layout_constraintTop_toBottomOf="@id/buttonRenderTooltip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTooltipText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:id="@+id/spinnerTooltipPosition"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/editTextTooltipText"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutTooltipText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <EditText
-        android:id="@+id/editTextTooltipWidth"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutTooltipWidth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="8"
         android:hint="Tooltip Width (in dp)"
-        android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/spinnerTooltipPosition"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp">
 
-    <EditText
-        android:id="@+id/editTextTextSize"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTooltipWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="8"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutTextSize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="8"
         android:hint="Tooltip Text Size"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/editTextTooltipWidth"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutTooltipWidth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="8"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonTextColorPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pick Text Color"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextSize"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="112dp"
+        android:text="Pick \nText Color"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutTextSize" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonBackgroundColorPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pick Background Color"
-        app:layout_constraintTop_toBottomOf="@id/buttonTextColorPicker"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="20dp"
+        android:text="Background \nColor"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toEndOf="@+id/buttonTextColorPicker"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSelectButton"
+        app:layout_constraintTop_toTopOf="@id/buttonTextColorPicker" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textViewPickButtonNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Pick Button Number"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerSelectButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerSelectButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutTextSize" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="Button1"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBackgroundColorPicker" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Button2"
+        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBackgroundColorPicker" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="30dp"
+        android:text="Button3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        android:text="Button4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

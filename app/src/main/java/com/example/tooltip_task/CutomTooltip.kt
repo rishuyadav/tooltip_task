@@ -69,4 +69,9 @@ class CustomTooltip(private val context: Context) {
         popupWindow.showAtLocation(targetView, Gravity.NO_GRAVITY, xOffset, yOffset)
     }
 
+    fun dismissTooltip() {
+            popupWindow.dismiss()
+
+    }
+
 }

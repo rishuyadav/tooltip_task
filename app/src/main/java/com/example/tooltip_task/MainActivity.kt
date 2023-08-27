@@ -1,14 +1,17 @@
 package com.example.tooltip_task
-
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.tooltip_task.data.TooltipConfiguration
+import com.example.tooltip_task.data.TooltipDatabase
 import com.example.tooltip_task.databinding.ActivityMainBinding
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,14 +22,29 @@ class MainActivity : AppCompatActivity() {
     private var selectedBackgroundColor: Int = Color.WHITE // Default background color
     private var isPickingTextColor: Boolean = true
 
+    private lateinit var tooltipDatabase: TooltipDatabase
+
+    private fun navigateToPreviewActivity() {
+        val intent = Intent(this, PreviewActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
+        tooltipDatabase = TooltipDatabase.getDatabase(this)
+
+
+        val buttonNames = arrayOf("Button1", "Button2", "Button3", "Button4","Buttton5")
+
+        val spinnerAdapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, buttonNames)
+        spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerSelectButton.adapter = spinnerAdapter2
+
         customTooltip = CustomTooltip(this)
-        val targetButton: View = findViewById(R.id.buttonRenderTooltip)
 
         val positions = arrayOf("TOP", "RIGHT", "BOTTOM", "LEFT")
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, positions)
@@ -34,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinnerTooltipPosition.adapter = spinnerAdapter
 
         binding.buttonRenderTooltip.setOnClickListener {
+            val selectedButtonIndex = binding.spinnerSelectButton.selectedItemPosition
             val tooltipText = binding.editTextTooltipText.text.toString()
             val position = when (binding.spinnerTooltipPosition.selectedItemPosition) {
                 0 -> CustomTooltip.TooltipPosition.TOP
@@ -49,9 +68,22 @@ class MainActivity : AppCompatActivity() {
             customTooltip.tooltipText.textSize = textSize
             customTooltip.tooltipText.setTextColor(selectedTextColor)
             customTooltip.tooltipView.setBackgroundColor(selectedBackgroundColor)
-             // Set background color
-            customTooltip.showTooltip(targetButton, position)
-            customTooltip.popupWindow.width = tooltipWidth
+
+            // Save the tooltip configuration to the database
+            val tooltipConfiguration = TooltipConfiguration(
+                buttonIndex = selectedButtonIndex,
+                tooltipText = tooltipText,
+                tooltipPosition = position.name,
+                tooltipWidth = tooltipWidth,
+                textSize = textSize,
+                textColor = selectedTextColor,
+                backgroundColor = selectedBackgroundColor
+            )
+
+            lifecycleScope.launch {
+                tooltipDatabase.tooltipDao().insertTooltipConfiguration(tooltipConfiguration)
+            }
+            navigateToPreviewActivity()
         }
 
         binding.buttonTextColorPicker.setOnClickListener {

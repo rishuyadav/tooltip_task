@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <dimen name="tooltip_padding">16dp</dimen>
-<dimen name="tooltip_corner_radius">8dp</dimen>
+<dimen name="tooltip_corner_radius">10dp</dimen>
 <dimen name="tooltip_arrow_width">16dp</dimen>
 <dimen name="tooltip_arrow_height">8dp</dimen>
 <dimen name="tooltip_text_size">14sp</dimen>
